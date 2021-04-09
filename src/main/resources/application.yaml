@@ -1,0 +1,12 @@
+spring:
+  flyway:
+    out-of-order: true
+  datasource:
+    url: "${SPRING_DATASOURCE_URL:jdbc:mariadb://localhost:3306/services-db}"
+    username: root
+    password: "${SPRING_DATASOURCE_PASSWORD:here-we-do-not-need-secure-password}"
+    driver-class-name: org.mariadb.jdbc.Driver
+    jpa:
+      database: mariadb
+      hibernate:
+        ddl-auto: update
