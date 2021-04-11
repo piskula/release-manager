@@ -14,9 +14,9 @@ class DeployService(
     @Transactional
     override fun deploy(deploy: Deploy): Int {
         validateDeploy(deploy)
-        val currentVersion = persistence.getMaxSystemVersion()
+        val currentVersion = persistence.getMaxSystemVersion() ?: 0
 
-        if (persistence.checkIfDeployAlreadyHappened(deploy))
+        if (persistence.deployAlreadyExists(deploy))
             return currentVersion
 
         val timestampOfDeploy = ZonedDateTime.now()
@@ -28,6 +28,8 @@ class DeployService(
     private fun validateDeploy(deploy: Deploy) {
         if (deploy.name.isBlank())
             throw IllegalArgumentException("name of service cannot be empty")
+        if (deploy.version < 0)
+            throw IllegalArgumentException("version cannot be negative")
     }
 
 }

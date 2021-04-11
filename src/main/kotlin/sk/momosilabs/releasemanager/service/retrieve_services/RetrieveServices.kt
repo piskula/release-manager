@@ -13,7 +13,7 @@ class RetrieveServices(
     @Transactional(readOnly = true)
     override fun retrieve(systemVersion: Int): List<Deploy> {
         val timestamp = persistence.getTimestampForSystemVersion(systemVersion)
-            ?: throw IllegalArgumentException("system version does not exist in the system")
+            ?: throw IllegalArgumentException("system version does not exist yet")
 
         return persistence.getAllDeploysForTimestamp(timestamp)
     }

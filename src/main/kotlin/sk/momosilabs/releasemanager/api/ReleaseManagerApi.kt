@@ -14,6 +14,6 @@ interface ReleaseManagerApi {
     fun deployService(@RequestBody data: DeployDTO): Int
 
     @GetMapping("/services")
-    fun retrieveServices(@RequestParam(required = true) systemVersion: Int): List<DeployDTO>
+    fun retrieveServicesForVersion(@RequestParam(required = true) systemVersion: Int): List<DeployDTO>
 
 }

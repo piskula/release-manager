@@ -12,10 +12,6 @@ import java.time.ZonedDateTime
 @Repository
 interface ServiceVersionRepository: JpaRepository<ServiceVersionEntity, ServiceVersionIdEntity> {
 
-    override fun findAll(): MutableList<ServiceVersionEntity> {
-        TODO("Not yet implemented")
-    }
-
     @Query("SELECT new sk.momosilabs.releasemanager.persistence.entity.ServiceVersionRetrieve(e.id.name, MAX(e.id.version)) " +
             "FROM #{#entityName} e " +
             "WHERE e.startDate <= :timestamp " +

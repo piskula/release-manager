@@ -17,7 +17,7 @@ class VersionPersistenceProvider(
 ) : VersionPersistence {
 
     @Transactional(readOnly = true)
-    override fun checkIfDeployAlreadyHappened(deploy: Deploy): Boolean =
+    override fun deployAlreadyExists(deploy: Deploy): Boolean =
         with(deploy) {
             repositoryServiceVersion.existsById(ServiceVersionIdEntity(name = name, version = version))
         }
@@ -33,8 +33,8 @@ class VersionPersistenceProvider(
         ).toModel()
 
     @Transactional(readOnly = true)
-    override fun getMaxSystemVersion(): Int =
-        repositorySystemVersion.findMaxVersion()?.toInt() ?: 0
+    override fun getMaxSystemVersion(): Int? =
+        repositorySystemVersion.findMaxVersion()
 
     @Transactional(readOnly = true)
     override fun getTimestampForSystemVersion(version: Int): ZonedDateTime? =

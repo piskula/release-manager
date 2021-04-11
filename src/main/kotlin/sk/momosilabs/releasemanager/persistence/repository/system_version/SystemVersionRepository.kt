@@ -11,6 +11,6 @@ interface SystemVersionRepository: JpaRepository<SystemVersionEntity, Long> {
     fun findByVersionNumber(versionNumber: Int): SystemVersionEntity?
 
     @Query("SELECT MAX(s.versionNumber) FROM system_version s")
-    fun findMaxVersion(): Long?
+    fun findMaxVersion(): Int?
 
 }

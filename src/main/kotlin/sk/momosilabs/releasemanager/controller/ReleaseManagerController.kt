@@ -15,7 +15,7 @@ class ReleaseManagerController(
     override fun deployService(data: DeployDTO): Int =
         deployServiceInteractor.deploy(data.toModel())
 
-    override fun retrieveServices(systemVersion: Int): List<DeployDTO> =
+    override fun retrieveServicesForVersion(systemVersion: Int): List<DeployDTO> =
         retrieveServicesInteractor.retrieve(systemVersion = systemVersion).toDto()
 
 }

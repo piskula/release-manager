@@ -5,13 +5,13 @@ import java.time.ZonedDateTime
 
 interface VersionPersistence {
 
-    fun checkIfDeployAlreadyHappened(deploy: Deploy): Boolean
+    fun deployAlreadyExists(deploy: Deploy): Boolean
 
     fun getAllDeploysForTimestamp(timestamp: ZonedDateTime): List<Deploy>
 
     fun saveNewServiceVersion(deploy: Deploy, timestamp: ZonedDateTime): Deploy
 
-    fun getMaxSystemVersion(): Int
+    fun getMaxSystemVersion(): Int?
 
     fun getTimestampForSystemVersion(version: Int): ZonedDateTime?
 
